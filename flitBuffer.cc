@@ -49,6 +49,7 @@ flitBuffer::isEmpty()
     return (m_buffer.size() == 0);
 }
 
+//++ Whether it is the time to transmit the first flit.
 bool
 flitBuffer::isReady(Cycles curTime)
 {
@@ -78,6 +79,7 @@ flitBuffer::setMaxSize(int maximum)
     max_size = maximum;
 }
 
+//++ TODO: What is a functionWrite?
 uint32_t
 flitBuffer::functionalWrite(Packet *pkt)
 {

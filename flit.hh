@@ -75,7 +75,8 @@ class flit
     void increment_hops() { m_route.hops_traversed++; }
     void print(std::ostream& out) const;
 
-    //++ TODO
+    //++ whether current stage is the target stage and time is ready for the flit.
+    //++ TODO: Where is it used?
     bool
     is_stage(flit_stage stage, Cycles time)
     {
@@ -83,7 +84,7 @@ class flit
                 time >= m_stage.second);
     }
     
-    //++ TODO
+    //++ TODO: What is it? Where is it used?
     void
     advance_stage(flit_stage t_stage, Cycles newTime)
     {
@@ -91,7 +92,8 @@ class flit
         m_stage.second = newTime;
     }
 
-    //++ TODO
+    //++ whether n2 is in front of n1.
+    //++ TODO: Where is it used?
     static bool
     greater(flit* n1, flit* n2)
     {
@@ -106,7 +108,7 @@ class flit
     bool functionalWrite(Packet *pkt);
 
   protected:
-    int m_id;          //++ Flit ID
+    int m_id;          //++ Flit ID  TODO: What is flit ID?
     int m_vnet;        //++ Current virtual net
     int m_vc;          //++ Current virtual channel
     RouteInfo m_route; //++ Routing information

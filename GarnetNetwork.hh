@@ -100,6 +100,7 @@ class GarnetNetwork : public Network
     //! indicates the number of messages that were written.
     uint32_t functionalWrite(Packet *pkt);
 
+    //++ The following functions are used for statistics.
     // Stats
     void collateStats();
     void regStats();
@@ -189,7 +190,8 @@ class GarnetNetwork : public Network
     GarnetNetwork(const GarnetNetwork& obj);
     GarnetNetwork& operator=(const GarnetNetwork& obj);
 
-    std::vector<VNET_type > m_vnet_type;
+    //++ TODO: Number of the following vector.
+    std::vector<VNET_type > m_vnet_type; //++ TODO: What is it?
     std::vector<Router *> m_routers;   // All Routers in Network
     std::vector<NetworkLink *> m_networklinks; // All flit links in the network
     std::vector<CreditLink *> m_creditlinks; // All credit links in the network

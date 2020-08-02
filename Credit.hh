@@ -45,6 +45,7 @@
 // Carries m_vc (inherits from flit.hh)
 // and m_is_free_signal (whether VC is free or not)
 
+
 class Credit : public flit
 {
   public:
@@ -54,6 +55,7 @@ class Credit : public flit
     bool is_free_signal() { return m_is_free_signal; }
 
   private:
+    //++ TODO: What is it? Where is it used?
     bool m_is_free_signal;
 };
 

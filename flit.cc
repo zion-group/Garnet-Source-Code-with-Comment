@@ -46,7 +46,7 @@ flit::flit(int id, int  vc, int vnet, RouteInfo route, int size,
     m_vnet = vnet;
     m_vc = vc;
     m_route = route;
-    m_stage.first = I_;
+    m_stage.first = I_;  //++ TODO: Is it necessary to define a flit at Input? 
     m_stage.second = m_time;
 
     if (size == 1) {

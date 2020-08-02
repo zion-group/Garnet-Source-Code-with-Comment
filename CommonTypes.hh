@@ -43,18 +43,21 @@
 //++ BODY_: Data of the packet.
 //++ TAIL_: Last flit of the packet.
 //++ HEAD_TAIL_: Single flit packet.
+//++ TODO: Where is it used?
 enum flit_type {HEAD_, BODY_, TAIL_, HEAD_TAIL_, NUM_FLIT_TYPE_};
 
 //++ Indicate the state of the virtual channel.
 //++ IDLE_: Idle state.
 //++ VC_AB_: TODO
 //++ ACTIVE_: TODO
+//++ TODO: Where is it used?
 enum VC_state_type {IDLE_, VC_AB_, ACTIVE_, NUM_VC_STATE_TYPE_};
 
 //++ Indicate the type of the virtual net.
 //++ CTRL_VNET: TODO
 //++ DATA_VNET_: TODO
 //++ NULL_VNET_: TODO
+//++ TODO: Where is it used?
 enum VNET_type {CTRL_VNET_, DATA_VNET_, NULL_VNET_, NUM_VNET_TYPE_};
 
 //++ Indicate the stage of current flit in a router.
@@ -63,12 +66,14 @@ enum VNET_type {CTRL_VNET_, DATA_VNET_, NULL_VNET_, NUM_VNET_TYPE_};
 //++ SA_: Switch Allocation.
 //++ ST_: Switch Traversal.
 //++ LT_: Link Traversal.
+//++ TODO: Where is it used?
 enum flit_stage {I_, VA_, SA_, ST_, LT_, NUM_FLIT_STAGE_};
 
 //++ Indicate the type of a link.
 //++ EXT_IN_: TODO
 //++ EXT_OUT_: TODO
 //++ INT_: TODO
+//++ TODO: Where is it used?
 enum link_type { EXT_IN_, EXT_OUT_, INT_, NUM_LINK_TYPES_ };
 
 //++ Indicate the routing algorithm.
@@ -77,12 +82,14 @@ enum link_type { EXT_IN_, EXT_OUT_, INT_, NUM_LINK_TYPES_ };
 //++ TURN_MODEL_: TODO
 //++ RANDOM_: TODO
 //++ CUSTOM_: TODO
+//++ TODO: Where is it used?
 enum RoutingAlgorithm { TABLE_ = 0, XY_ = 1, TURN_MODEL_ = 2, RANDOM_ = 3,
                         CUSTOM_ = 4,
                         NUM_ROUTING_ALGORITHM_};
 
 
 //++ Routing information
+//++ TODO: Where is it used?
 struct RouteInfo
 {
     // destination format for table-based routing

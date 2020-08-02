@@ -54,6 +54,8 @@ class flitBuffer
     void setMaxSize(int maximum);
     int getSize() const { return m_buffer.size(); }
 
+    //++ Get the first flit, and pop it from the buffer.
+    //++ TODO: test push_heap and pop_heap like the usage in this function.
     flit *
     getTopFlit()
     {
@@ -63,12 +65,14 @@ class flitBuffer
         return f;
     }
 
+    //++ Get data of top flit, do not pop the buffer.
     flit *
     peekTopFlit()
     {
         return m_buffer.front();
     }
 
+    //++ Insert a flit and sort the buffer. Sorting Algorithm is heap sort.
     void
     insert(flit *flt)
     {
