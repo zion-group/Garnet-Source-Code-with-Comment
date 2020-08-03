@@ -169,7 +169,7 @@ Network::checkNetworkAllocation(NodeID id, bool ordered,
         m_ordered[network_num] = true;
     }
 
-    m_vnet_type_names[network_num] = vnet_type;
+    [network_num] = vnet_type;
 }
 
 

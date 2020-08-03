@@ -137,10 +137,13 @@ class Network : public ClockedObject
     Network(const Network& obj);
     Network& operator=(const Network& obj);
 
-    uint32_t m_nodes;
-    static uint32_t m_virtual_networks;
-    std::vector<std::string> m_vnet_type_names;
-    Topology* m_topology_ptr;
+    uint32_t m_nodes; //++ TODO
+    static uint32_t m_virtual_networks; //++ TODO
+    //++ TODO: It has been changed in checkNetworkAllocation.
+    //++       checkNetworkAllocation has been called in setToNetQueue and setFromNetQueue.
+    //++       But they are not called anywhere. Who set data to m_vnet_type_names?
+    std::vector<std::string> m_vnet_type_names; 
+    Topology* m_topology_ptr; //++ TODO
     static uint32_t m_control_msg_size;
     static uint32_t m_data_msg_size;
 

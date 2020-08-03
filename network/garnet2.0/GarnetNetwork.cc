@@ -59,6 +59,7 @@ using m5::stl_helpers::deletePointers;
 GarnetNetwork::GarnetNetwork(const Params *p)
     : Network(p)
 {
+    //++ Set running parameters.
     m_num_rows = p->num_rows;
     m_ni_flit_size = p->ni_flit_size;
     m_vcs_per_vnet = p->vcs_per_vnet;
@@ -70,8 +71,10 @@ GarnetNetwork::GarnetNetwork(const Params *p)
     if (m_enable_fault_model)
         fault_model = p->fault_model;
 
+    //++ m_virtual_networks and m_vnet_type_names are defined in class Network.
+    //++ They are set in the constructor.
+    //++ TODO: What does the following code mean? 
     m_vnet_type.resize(m_virtual_networks);
-
     for (int i = 0 ; i < m_virtual_networks ; i++) {
         if (m_vnet_type_names[i] == "response")
             m_vnet_type[i] = DATA_VNET_; // carries data (and ctrl) packets
@@ -125,6 +128,7 @@ GarnetNetwork::init()
         m_num_cols = -1;
     }
 
+    //++ TODO: What is FaultModle?
     // FaultModel: declare each router to the fault model
     if (isFaultModelEnabled()) {
         for (vector<Router*>::const_iterator i= m_routers.begin();
