@@ -52,9 +52,9 @@ class BasicLink : public SimObject
 
     void print(std::ostream& out) const;
 
-    Cycles m_latency;
-    int m_bandwidth_factor;
-    int m_weight;
+    Cycles m_latency; //++ Transmission latency for current link.
+    int m_bandwidth_factor; //++ TODO
+    int m_weight; //++ TODO
 };
 
 inline std::ostream&
@@ -64,6 +64,9 @@ operator<<(std::ostream& out, const BasicLink& obj)
     out << std::flush;
     return out;
 }
+
+//++ TODO: What is the difference between BasicExtLink and BasicIntLink?
+//++       Why are they defined as two class?
 
 class BasicExtLink : public BasicLink
 {

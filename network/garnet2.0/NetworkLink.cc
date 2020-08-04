@@ -35,13 +35,14 @@
 
 #include "mem/ruby/network/garnet2.0/CreditLink.hh"
 
+//++ Set default data for variables from parameters.
 NetworkLink::NetworkLink(const Params *p)
     : ClockedObject(p), Consumer(this), m_id(p->link_id),
       m_type(NUM_LINK_TYPES_),
       m_latency(p->link_latency),
       linkBuffer(new flitBuffer()), link_consumer(nullptr),
       link_srcQueue(nullptr), m_link_utilized(0),
-      m_vc_load(p->vcs_per_vnet * p->virt_nets)
+      m_vc_load(p->vcs_per_vnet * p->virt_nets)//++ TODO: m_vc_load is a vector, p->vcs_per_vnet * p->virt_nets is a int, why
 {
 }
 
@@ -50,28 +51,32 @@ NetworkLink::~NetworkLink()
     delete linkBuffer;
 }
 
+//++ Set the consumer pointer. TODO: Where does it point to.
 void
 NetworkLink::setLinkConsumer(Consumer *consumer)
 {
     link_consumer = consumer;
 }
 
+//++ Set the source pointer. TODO: Where does it point to.
 void
 NetworkLink::setSourceQueue(flitBuffer *srcQueue)
 {
     link_srcQueue = srcQueue;
 }
 
+//++ Transmission wake up.
 void
 NetworkLink::wakeup()
 {
+    //++ If source buffer is ready, wake up the link and start data transmission.
     if (link_srcQueue->isReady(curCycle())) {
-        flit *t_flit = link_srcQueue->getTopFlit();
-        t_flit->set_time(curCycle() + m_latency);
-        linkBuffer->insert(t_flit);
-        link_consumer->scheduleEventAbsolute(clockEdge(m_latency));
-        m_link_utilized++;
-        m_vc_load[t_flit->get_vc()]++;
+        flit *t_flit = link_srcQueue->getTopFlit(); //++ Get first flit.
+        t_flit->set_time(curCycle() + m_latency); //++ Set next wakeup time for the flit.
+        linkBuffer->insert(t_flit); //++ Insert flit to link buffer.
+        link_consumer->scheduleEventAbsolute(clockEdge(m_latency)); //++ Set wakeup time for link consumer.
+        m_link_utilized++; //++ Increment utilization.
+        m_vc_load[t_flit->get_vc()]++; //++ Increment virtual channel load.
     }
 }
 
@@ -85,12 +90,14 @@ NetworkLink::resetStats()
     m_link_utilized = 0;
 }
 
+//++ Create a new NetworkLink.
 NetworkLink *
 NetworkLinkParams::create()
 {
     return new NetworkLink(this);
 }
 
+//++ Create a new CreditLink.
 CreditLink *
 CreditLinkParams::create()
 {

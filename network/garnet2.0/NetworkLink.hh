@@ -54,15 +54,18 @@ class NetworkLink : public ClockedObject, public Consumer
 
     void setLinkConsumer(Consumer *consumer);
     void setSourceQueue(flitBuffer *srcQueue);
+    void wakeup();
+
+    //++ Get Data.
     void setType(link_type type) { m_type = type; }
     link_type getType() { return m_type; }
     void print(std::ostream& out) const {}
     int get_id() const { return m_id; }
-    void wakeup();
 
     unsigned int getLinkUtilization() const { return m_link_utilized; }
     const std::vector<unsigned int> & getVcLoad() const { return m_vc_load; }
 
+    //++ TODO: Is linkBuffer linked to destination? Where is it used?
     inline bool isReady(Cycles curTime)
     { return linkBuffer->isReady(curTime); }
 
@@ -73,13 +76,13 @@ class NetworkLink : public ClockedObject, public Consumer
     void resetStats();
 
   private:
-    const int m_id;
-    link_type m_type;
-    const Cycles m_latency;
+    const int m_id;    //++ Link ID.
+    link_type m_type;  //++ Link Type.
+    const Cycles m_latency; //++ Latency for this link.
 
-    flitBuffer *linkBuffer;
-    Consumer *link_consumer;
-    flitBuffer *link_srcQueue;
+    flitBuffer *linkBuffer; //++ Data buffer for current link.
+    Consumer *link_consumer; //++ TODO
+    flitBuffer *link_srcQueue; //++ TODO
 
     // Statistical variables
     unsigned int m_link_utilized;
