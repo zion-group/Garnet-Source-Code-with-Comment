@@ -55,7 +55,7 @@ class Credit : public flit
     bool is_free_signal() { return m_is_free_signal; }
 
   private:
-    //++ TODO: What is it? Where is it used?
+    //++ Whether VC is free or not. TODO: Where is it used?
     bool m_is_free_signal;
 };
 

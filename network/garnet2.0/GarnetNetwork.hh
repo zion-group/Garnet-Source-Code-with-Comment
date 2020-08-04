@@ -86,6 +86,7 @@ class GarnetNetwork : public Network
     int getNumRouters();
     int get_router_id(int ni);
 
+    //++ The following 3 functions are the key functions to build a NoC.
     // Methods used by Topology to setup the network
     void makeExtOutLink(SwitchID src, NodeID dest, BasicLink* link,
                      const NetDest& routing_table_entry);
