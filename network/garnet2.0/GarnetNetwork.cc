@@ -168,16 +168,23 @@ GarnetNetwork::makeExtInLink(NodeID src, SwitchID dest, BasicLink* link,
 {
     assert(src < m_nodes);
 
+    //++ Cast the link to GarnetExtLink*, and get its NetworkLink and CreditLink for EXT_IN_ direction.
     GarnetExtLink* garnet_link = safe_cast<GarnetExtLink*>(link);
 
+    //++ TODO: Where is LinkDirection_In defined?
     // GarnetExtLink is bi-directional
     NetworkLink* net_link = garnet_link->m_network_links[LinkDirection_In];
     net_link->setType(EXT_IN_);
     CreditLink* credit_link = garnet_link->m_credit_links[LinkDirection_In];
 
+    //++ Push the links to vectors.
     m_networklinks.push_back(net_link);
     m_creditlinks.push_back(credit_link);
 
+    //++ Connect these links to ports in routers and Nis. 
+    //++ src is the source of the link.
+    //++ dest is the destination of the link.
+    //++ src and dest are not the same as src and dest in flit or packet.
     PortDirection dst_inport_dirn = "Local";
     m_routers[dest]->addInPort(dst_inport_dirn, net_link, credit_link);
     m_nis[src]->addOutPort(net_link, credit_link, dest);
