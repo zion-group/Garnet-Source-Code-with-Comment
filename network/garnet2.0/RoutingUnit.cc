@@ -79,6 +79,7 @@ RoutingUnit::lookupRoutingTable(int vnet, NetDest msg_destination)
     std::vector<int> output_link_candidates;
     int num_candidates = 0;
 
+    //++ TODO: ??
     // Identify the minimum weight among the candidate output links
     for (int link = 0; link < m_routing_table.size(); link++) {
         if (msg_destination.intersectionIsNotEmpty(m_routing_table[link])) {
@@ -114,7 +115,7 @@ RoutingUnit::lookupRoutingTable(int vnet, NetDest msg_destination)
     return output_link;
 }
 
-
+//++ TODO: Where is PortDirection defined?
 void
 RoutingUnit::addInDirection(PortDirection inport_dirn, int inport_idx)
 {
@@ -141,6 +142,8 @@ RoutingUnit::outportCompute(RouteInfo route, int inport,
 {
     int outport = -1;
 
+    //++ If current router is the destination router, offload the data to Local.
+    //++ TODO: Is the comment above right?
     if (route.dest_router == m_router->get_id()) {
 
         // Multiple NIs may be connected to this router,

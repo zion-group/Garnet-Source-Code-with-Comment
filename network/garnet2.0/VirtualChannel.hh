@@ -90,6 +90,7 @@ class VirtualChannel
     uint32_t functionalWrite(Packet *pkt);
 
   private:
+    //++ TODO: Why does vc have a ID?
     int m_id;
     flitBuffer *m_input_buffer;
     std::pair<VC_state_type, Cycles> m_vc_state;

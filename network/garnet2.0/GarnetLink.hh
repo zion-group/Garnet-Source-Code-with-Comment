@@ -57,6 +57,7 @@ class GarnetIntLink : public BasicIntLink
     friend class GarnetNetwork;
 
   protected:
+    //++ Internal link has a data link and a credit link.
     NetworkLink* m_network_link;
     CreditLink* m_credit_link;
 };
@@ -82,6 +83,7 @@ class GarnetExtLink : public BasicExtLink
     friend class GarnetNetwork;
 
   protected:
+    //++ External link has two links for 2 NIs in a node.
     NetworkLink* m_network_links[2];
     CreditLink* m_credit_links[2];
 };

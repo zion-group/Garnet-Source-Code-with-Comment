@@ -41,6 +41,7 @@ OutVcState::OutVcState(int id, GarnetNetwork *network_ptr)
     m_id = id;
     m_vc_state = IDLE_;
 
+    //++ Get the max credit which is a parameter of the network.
     if (network_ptr->get_vnet_type(id) == DATA_VNET_)
         m_max_credit_count = network_ptr->getBuffersPerDataVC();
     else

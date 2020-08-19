@@ -37,6 +37,9 @@
 #include "mem/ruby/network/garnet2.0/CommonTypes.hh"
 #include "mem/ruby/network/garnet2.0/GarnetNetwork.hh"
 
+
+//++ Record credit information connected to output port.
+//++ TODO: Where is the class used?
 class OutVcState
 {
   public:
@@ -60,6 +63,7 @@ class OutVcState
     }
 
   private:
+    //++ TODO: What is the ID?
     int m_id ;
     Cycles m_time;
     VC_state_type m_vc_state;

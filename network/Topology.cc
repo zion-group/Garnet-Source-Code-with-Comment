@@ -68,14 +68,17 @@ Topology::Topology(uint32_t num_routers,
     for (vector<BasicExtLink*>::const_iterator i = ext_links.begin();
          i != ext_links.end(); ++i) {
         BasicExtLink *ext_link = (*i);
+        //++ TODO: Param has the information about all links and nodes?
         AbstractController *abs_cntrl = ext_link->params()->ext_node;
         BasicRouter *router = ext_link->params()->int_node;
 
+        //++ TODO: How does these idx work?
         int machine_base_idx = MachineType_base_number(abs_cntrl->getType());
         int ext_idx1 = machine_base_idx + abs_cntrl->getVersion();
         int ext_idx2 = ext_idx1 + m_nodes;
         int int_idx = router->params()->router_id + 2*m_nodes;
 
+        //++ TODO: Ports are not the same as addLink defined in this file, why?
         // create the internal uni-directional links in both directions
         // ext to int
         addLink(ext_idx1, int_idx, ext_link);
@@ -93,6 +96,8 @@ Topology::Topology(uint32_t num_routers,
         PortDirection src_outport = int_link->params()->src_outport;
         PortDirection dst_inport = int_link->params()->dst_inport;
 
+        //++ TODO: m_int_link_vector is already equal to int_links at the beginning. 
+        //++       Why push int_link here again?
         // Store the IntLink pointers for later
         m_int_link_vector.push_back(int_link);
 
@@ -107,6 +112,7 @@ Topology::Topology(uint32_t num_routers,
 void
 Topology::createLinks(Network *net)
 {
+    //++ TODO: What is a switchID?
     // Find maximum switchID
     SwitchID max_switch_id = 0;
     for (LinkMap::const_iterator i = m_link_map.begin();
@@ -149,6 +155,7 @@ Topology::createLinks(Network *net)
     }
 
     // Walk topology and hookup the links
+    //++ TODO:
     Matrix dist = shortest_path(topology_weights, component_latencies,
                                 component_inter_switches);
 
@@ -171,6 +178,7 @@ Topology::createLinks(Network *net)
     }
 }
 
+//++ Add a link to m_link_map for current topology.
 void
 Topology::addLink(SwitchID src, SwitchID dest, BasicLink* link,
                   PortDirection src_outport_dirn,
@@ -182,6 +190,7 @@ Topology::addLink(SwitchID src, SwitchID dest, BasicLink* link,
     std::pair<int, int> src_dest_pair;
     LinkEntry link_entry;
 
+    //++ Store the link information into m_link_map using a dictionary.
     src_dest_pair.first = src;
     src_dest_pair.second = dest;
     link_entry.link = link;
@@ -190,6 +199,7 @@ Topology::addLink(SwitchID src, SwitchID dest, BasicLink* link,
     m_link_map[src_dest_pair].push_back(link_entry);
 }
 
+//++ Connect links to nodes.
 void
 Topology::makeLink(Network *net, SwitchID src, SwitchID dest,
                    const NetDest& routing_table_entry, int link_idx)
@@ -225,6 +235,8 @@ Topology::makeLink(Network *net, SwitchID src, SwitchID dest,
     }
 }
 
+
+//++ TODO: The following functions are used for getting shortest path.
 // The following all-pairs shortest path algorithm is based on the
 // discussion from Cormen et al., Chapter 26.1.
 void

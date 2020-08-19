@@ -67,6 +67,8 @@ GarnetExtLink::GarnetExtLink(const Params *p)
 {
     // Bi-directional
 
+    //++ TODO: Details about these links.
+
     // In
     m_network_links[0] = p->network_links[0];
     m_credit_links[0] = p->credit_links[0];

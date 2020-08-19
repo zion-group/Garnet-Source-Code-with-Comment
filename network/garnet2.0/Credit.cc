@@ -37,6 +37,7 @@
 // Carries m_vc (inherits from flit.hh)
 // and m_is_free_signal (whether VC is free or not)
 
+//++ Initialize all data.
 Credit::Credit(int vc, bool is_free_signal, Cycles curTime)
 {
     m_id = 0;

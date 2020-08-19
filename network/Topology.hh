@@ -93,12 +93,16 @@ class Topology
     NetDest shortest_path_to_node(SwitchID src, SwitchID next,
                                   const Matrix &weights, const Matrix &dist);
 
+    //++ TODO: What is a node?
     const uint32_t m_nodes;
+    //++ TODO: What is a switch?
     const uint32_t m_number_of_switches;
 
+    //++ Internal and external links.
     std::vector<BasicExtLink*> m_ext_link_vector;
     std::vector<BasicIntLink*> m_int_link_vector;
 
+    //++ All link informations. The data structure is a dictionary.
     LinkMap m_link_map;
 };
 

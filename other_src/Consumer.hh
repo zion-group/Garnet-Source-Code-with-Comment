@@ -74,6 +74,7 @@ class Consumer
     void scheduleEvent(Cycles timeDelta);
 
   private:
+    //++ Record all coming events.
     std::set<Tick> m_scheduled_wakeups;
     ClockedObject *em;
 };

@@ -39,6 +39,7 @@ Consumer::scheduleEvent(Cycles timeDelta)
 void
 Consumer::scheduleEventAbsolute(Tick evt_time)
 {
+    //++ Register the wakeup event to scheduler, and record event time.
     if (!alreadyScheduled(evt_time)) {
         // This wakeup is not redundant
         auto *evt = new EventFunctionWrapper(
@@ -48,6 +49,7 @@ Consumer::scheduleEventAbsolute(Tick evt_time)
         insertScheduledWakeupTime(evt_time);
     }
 
+    //++ Delete all out-of-date events. 
     Tick t = em->clockEdge();
     set<Tick>::iterator bit = m_scheduled_wakeups.begin();
     set<Tick>::iterator eit = m_scheduled_wakeups.lower_bound(t);

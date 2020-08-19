@@ -67,6 +67,7 @@ VirtualChannel::set_active(Cycles curTime)
     m_enqueue_time = curTime;
 }
 
+//++ Indicate whether it is the target stage for the flit at the top of the channel that is ready on timeline.
 bool
 VirtualChannel::need_stage(flit_stage stage, Cycles time)
 {
